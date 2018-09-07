@@ -1,10 +1,16 @@
 $(function(){
-    
-    $('#canvas').attr( 'width', $(window).width() );
-    $('#canvas').attr( 'height', $(window).height() );
+
+    // canvas自适应
+    var canvas = $('#canvas');
+    canvas.attr( 'width', $(window).width() );
+    canvas.attr( 'height', $(window).height() );
+    $(window).on('resize',function(){
+        canvas.attr('width', $(window).width());
+        canvas.attr('height', $(window).height());
+    });
 
 
-
+    // createjs 开始
 
     //资源加载类
     var queue = new createjs.LoadQueue();
@@ -29,6 +35,15 @@ $(function(){
         // createjs.Sound.play("music");
 
         var stage = new createjs.Stage('canvas');
+
+        //添加底图
+        var bmp = new createjs.Bitmap('images/02.jpeg');
+        stage.addChild(bmp);
+        bmp.addEventListener('touchstart',function(event){
+            console.log(event );
+        });
+
+
         // 添加帧动画
         var data = {
             images: ["images/01.png"],
@@ -42,6 +57,10 @@ $(function(){
         animation.x = animation.y = 50;
         stage.addChild(animation);
         stage.update();
+        animation.on('click',function(event){
+            console.log(event);
+        });
+
 
         //动起来
         createjs.Ticker.on('tick', handleTick);
