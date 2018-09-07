@@ -54,24 +54,31 @@ $(function(){
         stage.addChild(animation);
         stage.update();
         animation.on('pressmove', function (event) {
-            console.log(event);
+            // console.log(event);
             animation.x = event.rawX -50;
             animation.y = event.rawY - 50;
         });
-        animation.on('pressup', function (event) {
+        // animation.on('pressup', function (event) {
+        //     console.log(event);
+        // });
+        animation.on('mousedown', function (event) {
             console.log(event);
         });
-        animation.on('pressdown', function (event) {
-            console.log(event);
-        });
-
-
 
         //动起来
         createjs.Ticker.on('tick', handleTick);
         function handleTick(){
             stage.update();
         }
+
+        //文本
+        var text = new createjs.Text('显示一行或多行动态文本（不是用户可编辑）在显示列表。线的包装支持（使用线宽）是非常基本的，只在空格和制表符。');
+        text.color = 'red';
+        text.lineWidth = 100;
+        text.font = 'bold 14px Arial';
+        stage.addChild(text);
+        
+
 
 
         createjs.Touch.enable(stage);
