@@ -1,22 +1,34 @@
 $(function(){
     
-    $('#demoCanvas').attr( 'width', $(window).width() );
-    $('#demoCanvas').attr( 'height', $(window).height() );
+    $('#canvas').attr( 'width', $(window).width() );
+    $('#canvas').attr( 'height', $(window).height() );
+
+
+
 
     //资源加载类
     var queue = new createjs.LoadQueue();
     queue.installPlugin(createjs.Sound);
+    queue.on("progress", handleProgress, this);
     queue.on("complete", handleComplete, this);
-    queue.loadFile({ id:'sound', src:'music/music.mp3'});
+    queue.loadFile({ id:'music', src:'music/music.mp3'});
     queue.loadManifest([
         { id: "01", src: "images/01.png" },
         { id: "02", src: "images/02.jpeg" },
     ]);
-    function handleComplete() {
-        //完成之后调用
-        createjs.Sound.play("sound");
 
-        var stage = new createjs.Stage('demoCanvas');
+    //加载中.
+    function handleProgress(event){
+        var progress = parseInt(event.progress * 100);
+        console.log(progress);
+    }
+
+    //加载完成之后
+    function handleComplete() {
+        //播放音乐
+        // createjs.Sound.play("music");
+
+        var stage = new createjs.Stage('canvas');
         // 添加帧动画
         var data = {
             images: ["images/01.png"],
