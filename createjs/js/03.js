@@ -16,41 +16,37 @@ $(function(){
         { id:'pic1' , src:'images/03.jpeg'}
     ]);
 
-    var stage = new createjs.Stage('canvas');
 
     function handleProgress(event){
         console.log(event.progress);
     }
+
+    var stage = new createjs.Stage('canvas');
+
     function handleComplete() {
         console.log('加载完成');
 
 
-        //创建图形
-        var bitmap1 = new createjs.Bitmap(queue.getResult('pic1'));
-        //可进行图片位移
-        bitmap1.x = -80;
-        bitmap1.y = -80;
-        //创建圆形
-        var circle = new createjs.Shape();
-        circle.graphics.beginFill().drawCircle(100, 100, 100); 
-        stage.addChild(bitmap1);
-        stage.addChild(circle);
-        //进行遮罩处理
-        bitmap1.mask = circle;
-        stage.update();
+        var shape1 = new createjs.Shape();
+        shape1.graphics.beginStroke("red").beginFill("blue").drawRect(20, 20, 100, 50);
+        stage.addChild(shape1);
 
 
-
-        //底图简单拖拽
-        bitmap1.on('pressmove', function (event) {
-            this.x = event.rawX -185;
-            this.y = event.rawY -185;
-        });
-        createjs.Ticker.on('tick', handleTick);
-        function handleTick(){
+        stage.on('click',function(){
+            stage.removeChild(shape1);
+            var shape2 = new createjs.Shape();
+            shape2.graphics.beginStroke("yellow").beginFill("red").drawRect(20, 20, 100, 50);
+            shape2.x = shape2.y = 50;
+            stage.addChild(shape2);
             stage.update();
-        }
+        });
 
+
+
+
+        
+
+        stage.update();
     }
 
 

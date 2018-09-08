@@ -43,8 +43,8 @@ $(function(){
 
         //底图简单拖拽
         bitmap1.on('pressmove', function (event) {
-            this.x = event.rawX -185;
-            this.y = event.rawY -185;
+            this.x = event.stageX -185;
+            this.y = event.stageY -185;
         });
         createjs.Ticker.on('tick', handleTick);
         function handleTick(){
