@@ -37,8 +37,9 @@ $(function(){
         }
 
         stage.on('click',function(){
-            createjs.Tween.get(shape1).to({x:1000}, 1000,createjs.Ease.circOut);
+            createjs.Tween.get(shape1).to({x:1000}, 1000,createjs.Ease.getPowIn(2.2));
         });
+
 
 
 
