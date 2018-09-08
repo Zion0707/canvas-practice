@@ -31,22 +31,17 @@ $(function(){
         shape1.graphics.beginStroke("red").beginFill("blue").drawRect(20, 20, 100, 50);
         stage.addChild(shape1);
 
+        createjs.Ticker.on('tick', handleTick);
+        function handleTick(){
+            stage.update();
+        }
 
         stage.on('click',function(){
-            stage.removeChild(shape1);
-            var shape2 = new createjs.Shape();
-            shape2.graphics.beginStroke("yellow").beginFill("red").drawRect(20, 20, 100, 50);
-            shape2.x = shape2.y = 50;
-            stage.addChild(shape2);
-            stage.update();
+            createjs.Tween.get(shape1).to({x:1000}, 1000,createjs.Ease.circOut);
         });
 
 
 
-
-        
-
-        stage.update();
     }
 
 
