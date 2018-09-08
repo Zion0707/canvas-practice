@@ -24,6 +24,7 @@ $(function(){
     function handleComplete() {
         console.log('加载完成');
 
+
         //创建图形
         var bitmap1 = new createjs.Bitmap(queue.getResult('pic1'));
         //可进行图片位移
@@ -36,9 +37,20 @@ $(function(){
         stage.addChild(circle);
         //进行遮罩处理
         bitmap1.mask = circle;
-
-
         stage.update();
+
+
+
+        //底图简单拖拽
+        bitmap1.on('pressmove', function (event) {
+            this.x = event.rawX -185;
+            this.y = event.rawY -185;
+        });
+        createjs.Ticker.on('tick', handleTick);
+        function handleTick(){
+            stage.update();
+        }
+
     }
 
 
