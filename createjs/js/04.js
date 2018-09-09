@@ -72,4 +72,12 @@ $(function(){
 
 
 
+    //动起来
+    createjs.Ticker.on('tick', handleTick);
+    function handleTick(){
+        stage.update();
+    }
+
+
+
 });
