@@ -64,7 +64,7 @@ $(function(){
         var el = queue.getResult(name);
         var bitmap = new createjs.Bitmap(el);
         var bounds = bitmap.getBounds();
-        bitmap.setBounds(bounds.x+10, bounds.y+10, bounds.width/2, bounds.height/2);
+        bitmap.set({x:bounds.x+20, y:bounds.y+20, scaleX:0.5, scaleY:0.5});
         stage.addChild(bitmap);
         stage.update();
     }
