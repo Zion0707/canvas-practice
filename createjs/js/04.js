@@ -1,24 +1,22 @@
 $(function(){
-    // canvas自适应
-    var canvas = $('#canvas');
-    canvas.attr( 'width', $(window).width() );
-    canvas.attr( 'height', $(window).height() );
-    $(window).on('resize',function(){
-        canvas.attr('width', $(window).width());
-        canvas.attr('height', $(window).height());
-    });
 
     var queue = new createjs.LoadQueue();
     queue.installPlugin(createjs.Sound);
     queue.on('complete', handleComplete, this);
     queue.on('progress', handleProgress, this);
     queue.loadManifest([
-        { id:'pic1' , src:'images/03.jpeg'}
+        { id:'p01' , src:'images/01.png'},
+        { id:'p02' , src:'images/02.jpeg'},
+        { id:'p03' , src:'images/03.jpeg'}
     ]);
-
-
+    //加载进度
     function handleProgress(event){
-        console.log(event.progress);
+
+        var progress = parseInt( event.progress * 100 );
+        $('.progress span').html( progress );
+        if( progress == 100 ){
+            $('.page1').fadeOut();
+        }
     }
 
     var stage = new createjs.Stage('canvas');
@@ -26,19 +24,6 @@ $(function(){
     function handleComplete() {
         console.log('加载完成');
 
-
-        var shape1 = new createjs.Shape();
-        shape1.graphics.beginStroke("red").beginFill("blue").drawRect(20, 20, 100, 50);
-        stage.addChild(shape1);
-
-        createjs.Ticker.on('tick', handleTick);
-        function handleTick(){
-            stage.update();
-        }
-
-        stage.on('click',function(){
-            createjs.Tween.get(shape1).to({x:1000}, 1000,createjs.Ease.getPowIn(2.2));
-        });
 
 
 
