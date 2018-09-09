@@ -33,9 +33,42 @@ $(function(){
         $(this).addClass('active').siblings('li').removeClass();
         $('.tab-item .item-li').eq(index).show().siblings('.item-li').hide();
     });
-
+    //工具栏隐藏
+    $('.tool-btn').on('click',function(){
+        $('.p2-tool').toggle();
+    });
 
     var stage = new createjs.Stage('canvas');
+
+    $('.item-li span').on('click',function(){
+        var name = $(this).attr('name');
+        console.log(name);
+
+        if( name == 'p07' || name == 'p08' ){
+            setBg(name);
+        }else{
+            addElement(name);
+        }
+    });
+
+    
+    function setBg(name){
+        var bg = queue.getResult(name);
+        var bitmap = new createjs.Bitmap(bg);
+        stage.addChild(bitmap);
+        stage.update();
+        // 获取宽高
+        console.log( bitmap.getBounds() );
+    }
+    function addElement(name){
+        var el = queue.getResult(name);
+        var bitmap = new createjs.Bitmap(el);
+        var bounds = bitmap.getBounds();
+        bitmap.setBounds(bounds.x+10, bounds.y+10, bounds.width/2, bounds.height/2);
+        stage.addChild(bitmap);
+        stage.update();
+    }
+
 
 
 
