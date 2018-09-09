@@ -6,6 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>模拟实战，拼图</title>
     <link rel="stylesheet" href="css/04.css">
+    <script type="text/javascript">
+        var docEl = document.documentElement, Size = docEl.clientWidth / (750 / 40); 
+        docEl.style.fontSize = Size + 'px'; 
+        if(Size >= 25){ 
+            Size = 20;
+            docEl.style.fontSize = '20px';
+        }
+    </script>
 </head>
 <body>
 
@@ -15,7 +23,32 @@
         </div><!--page1-->
         <div class="page page2">
             <canvas id="canvas" width="750" height="2668"></canvas>
-            <div class="p2-tool"></div>
+            <div class="p2-tool">
+                <ul class="tab-btn">
+                    <li class="active">背景</li>
+                    <li>人物</li>
+                    <li>狗狗1</li>
+                    <li>狗狗2</li>
+                </ul>
+                <div class="tab-item">
+                    <div class="item-li" style="display:block;">
+                        <span name="p07"><img src="images/04/07.jpg"></span>
+                        <span name="p08"><img src="images/04/08.jpg"></span>
+                    </div>
+                    <div class="item-li">
+                        <span name="p05"><img src="images/04/05.png"></span>
+                        <span name="p06"><img src="images/04/06.png"></span>
+                    </div>
+                    <div class="item-li">
+                        <span name="p03"><img src="images/04/03.png"></span>
+                        <span name="p04"><img src="images/04/04.png"></span>
+                    </div>
+                    <div class="item-li">
+                        <span name="p01"><img src="images/04/01.png"></span>
+                        <span name="p02"><img src="images/04/02.png"></span>
+                    </div>
+                </div>
+            </div>
         </div><!--page2-->
     </div>
 

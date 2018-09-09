@@ -1,4 +1,11 @@
-*{padding:0;margin:0;}
+*{
+    padding:0;
+    margin:0;
+    font-size: .75rem;
+}
+ul,li{
+    list-style-type:none;
+}
 html,
 body,
 .wrap,
@@ -19,6 +26,7 @@ canvas{
 }
 .page1{
     background-color:#eb4c36;
+    z-index:9;
 }
 .progress{
     position: absolute;
@@ -29,5 +37,50 @@ canvas{
     left:0;
 }
 .p2-tool{
-    
+    position: absolute;
+    width:100%;
+    height:12rem;
+    border-top:1px solid #ddd;
+    bottom:0;
+    left:0;
+    z-index:3;
+}
+.tab-btn{
+    color:#999;
+    height:2rem;
+    line-height:2rem;
+    border-bottom:1px solid #ddd;
+}
+.tab-btn li{
+    width:25%;
+    float: left;
+    cursor: pointer;
+    text-align: center;
+}
+.tab-btn li.active{
+    color:red;
+}
+.tab-item{
+    height:10rem;
+    overflow:hidden;
+}
+.tab-item .item-li{
+    width:100%;
+    height:100%;
+    overflow-x:hidden;
+    overflow-y: auto;
+    display:none;
+}
+.tab-item .item-li span{
+    width: 2.5rem;
+    height: 2.5rem;
+    display: block;
+    border:1px solid #ddd;
+    margin: .5rem;
+    float: left;
+}
+.tab-item .item-li span img{
+    display: block;
+    width:100%;
+    height:100%;
 }
