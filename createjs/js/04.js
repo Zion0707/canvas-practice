@@ -75,8 +75,10 @@ $(function(){
         var rmBtn = new createjs.Shape();
         //设置关闭按钮到左下角
         rmBtn.graphics.beginFill('orangered').drawCircle(-7, bounds.height/2+7, 14);
+        //设置名称
+        rmBtn.set({ name:'rmBtn'});
         rmBtn.on('mousedown',function(event){
-            console.log(event);
+            console.log(event.currentTarget.name);
             // stage.removeChild(container);
         });
 
