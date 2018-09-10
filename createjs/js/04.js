@@ -76,9 +76,7 @@ $(function(){
         //设置关闭按钮到左下角
         rmBtn.graphics.beginFill('orangered').drawCircle(-7, bounds.height/2+7, 14);
         rmBtn.on('mousedown',function(event){
-            event.cancelable = true;
             console.log(event);
-            console.log(1);
             // stage.removeChild(container);
         });
 
