@@ -25,6 +25,8 @@ $(function(){
     //加载完成
     function handleComplete() {
         console.log('加载完成');
+
+        addElement('p01');
     }
 
     //tab切换
@@ -67,9 +69,17 @@ $(function(){
         bitmap.set({x:bounds.x+20, y:bounds.y+20, scaleX:0.5, scaleY:0.5});
         stage.addChild(bitmap);
         stage.update();
+
+        bitmap.on('mousedown',function(event){
+            this.set({ x: event.stageX - bounds.width / 4, y: event.stageY - bounds.height / 4});
+        });
+        bitmap.on('pressmove', function (event) {
+            this.set({ x: event.stageX - bounds.width / 4, y: event.stageY - bounds.height / 4 });
+        });
+        bitmap.on('pressup', function (event) {
+            // console.log(event);
+        });
     }
-
-
 
 
     //动起来
@@ -77,7 +87,6 @@ $(function(){
     function handleTick(){
         stage.update();
     }
-
-
-
+    //必须开启这个才有touch事件
+    createjs.Touch.enable(stage);
 });
