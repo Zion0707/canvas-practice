@@ -59,24 +59,49 @@ $(function(){
         var bitmap = new createjs.Bitmap(bg);
         stage.addChild(bitmap);
         stage.update();
-        // 获取宽高
+        // 获取x,y,w,h
         console.log( bitmap.getBounds() );
     }
     function addElement(name){
         var el = queue.getResult(name);
+
+        //图片
         var bitmap = new createjs.Bitmap(el);
         var bounds = bitmap.getBounds();
-        bitmap.set({x:bounds.x+20, y:bounds.y+20, scaleX:0.5, scaleY:0.5});
-        stage.addChild(bitmap);
+        // bitmap.set({x:bounds.x+20, y:bounds.y+20, scaleX:0.5, scaleY:0.5});
+        bitmap.set({scaleX:0.5, scaleY:0.5});
+        
+        //关闭按钮
+        var rmBtn = new createjs.Shape();
+        //设置关闭按钮到左下角
+        rmBtn.graphics.beginFill('orangered').drawCircle(-7, bounds.height/2+7, 14);
+        rmBtn.on('mousedown',function(event){
+            event.cancelable = true;
+            console.log(event);
+            console.log(1);
+            // stage.removeChild(container);
+        });
+
+        //缩放按钮
+        var zoomBtn = new createjs.Shape();
+        zoomBtn.graphics.beginFill('#36a0db').drawCircle(bounds.width / 2 + 7, -7, 14);
+
+
+        var container = new createjs.Container();
+        container.set({x:20, y:20});
+        container.addChild(bitmap, rmBtn, zoomBtn);
+        stage.addChild(container);
         stage.update();
 
-        bitmap.on('mousedown',function(event){
-            this.set({ x: event.stageX - bounds.width / 4, y: event.stageY - bounds.height / 4});
+        container.on('mousedown',function(event){
+            // 设置层级问题
+            stage.setChildIndex(this,1);
+            this.set({ x: event.stageX - bounds.width / 4, y: event.stageY - bounds.height / 4 });    
         });
-        bitmap.on('pressmove', function (event) {
+        container.on('pressmove', function (event) {
             this.set({ x: event.stageX - bounds.width / 4, y: event.stageY - bounds.height / 4 });
         });
-        bitmap.on('pressup', function (event) {
+        container.on('pressup', function (event) {
             // console.log(event);
         });
     }

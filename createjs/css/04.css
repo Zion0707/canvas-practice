@@ -277,7 +277,7 @@ canvas{
     position: absolute;
     left:0;
     right:0;
-    z-index:99;
+    z-index:9;
     text-align: center;
     height:2rem;
     line-height: 2rem;
