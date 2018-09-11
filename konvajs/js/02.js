@@ -32,45 +32,25 @@ $(function(){
         });
 
         var layer = new Konva.Layer();
-        // for(var i = 1 ; i < 15 ; i++ ){
-        //     console.log(92*i);   
-        // }
-        
-        var p7 = queue.getResult('p7');
 
-        var blob = new Konva.Sprite({
-            x: 50,
-            y: 50,
-            image: p7,
-            frameRate: 18,
-            animation: 'idle',
-            animations: {
-                idle: [
-                  0,0,92,100,
-                  92,0,92,100,
-                  276,0,92,100,
-                  368,0,92,100,
-                  460,0,92,100,
-                  552,0,92,100,
-                  644,0,92,100,
-                  736,0,92,100,
-                  828,0,92,100,
-                  920,0,92,100,
-                  1012,0,92,100,
-                  1104,0,92,100,
-                  1196,0,92,100,
-                ]
-            },
-            draggable: true,
-            name:'p7',
-            // fill:'#ddd',
-            // opacity:0.5,
+        var rect = new Konva.Rect({
+            x: 160,
+            y: 60,
+            width: 100,
+            height: 90,
+            fill: 'red',
+            name: 'rect',
+            stroke: 'black',
+            draggable: true
         });
-        layer.add(blob);
+        layer.add(rect);
+        // create new transformer
+        var tr = new Konva.Transformer();
+        layer.add(tr);
+        tr.attachTo(rect);
+        layer.draw();
+
         stage.add(layer);
-
-        blob.start();
-
     }
 
     
