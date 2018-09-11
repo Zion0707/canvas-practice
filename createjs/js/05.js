@@ -31,19 +31,36 @@ $(function () {
         toolArea.set({ name: 'toolArea' });
         //背景
         var taBg = new createjs.Shape();
-        taBg.graphics.beginFill().drawRect(0, 1000, 750, 334);
+        taBg.graphics.beginFill().drawRect(0, 0, 750, 334);
         taBg.set({ name: 'taBg' });
         //上边框
         var taBt = new createjs.Shape();
-        taBt.graphics.beginFill('#999').drawRect(0, 1000, 750, 1);
+        taBt.graphics.beginFill('#999').drawRect(0, 0, 750, 1);
         taBt.set({ name: 'taBt' });
 
 
-        var bmp = new createjs.Bitmap(queue.getResult('p3'));
+        var addBtnCon = new createjs.Container();
+        addBtnCon.set({ x:30, y:30});
+        var addBtn = new createjs.Shape();
+        addBtn.graphics.beginFill('orangered').rc(0, 0, 160, 60, 10, 10, 10, 10);
+        addBtn.set({ alpha:0 });
+        addBtn.shadow = new createjs.Shadow('#999', 0, 0, 10);
+        //渐显动画
+        createjs.Tween.get(addBtn).to({alpha:1},1000);        
+        //按钮文字
+        var addBtnText = new createjs.Text('添加','25px Arial','#ffffff');
+        addBtnText.shadow = new createjs.Shadow('#000', 0, 0, 1);
+
+        //整合到一个组里面
+        addBtnCon.addChild(addBtn, addBtnText);
+        addBtnCon.on('click',function(){
+            console.log('添加操作');
+        });
+
+
         //显示区div
-        toolArea.addChild(taBg, taBt, bmp);
-
-
+        toolArea.addChild(taBg, taBt, addBtnCon);
+        toolArea.set({ x: 0, y: 1000 });
 
         stage.addChild(displayArea, toolArea);
         //实时更新
