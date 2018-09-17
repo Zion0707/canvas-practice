@@ -11,9 +11,10 @@ $(function(){
         size:[100],
         lineBreak:'none',
         fillColor: 'orangered',
+        lineHeight:'20px'
     });
+
+
+
     scene.layer().append(text);
-
-
-
 });
