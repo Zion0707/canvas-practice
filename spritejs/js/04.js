@@ -8,7 +8,8 @@ $(function(){
     text.attr({
         pos:[0,0],
         font: 'bold 12px Arial',
-        size:[100],
+        // size:[100],
+        width:100,
         lineBreak:'none',
         fillColor: 'orangered',
     });
