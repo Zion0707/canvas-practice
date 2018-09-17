@@ -4,35 +4,24 @@ $(function(){
         resolution: [750, 2668],
     });
 
-    // 创建一个小组
-    const group = new Group();
+    const div1 = new Group();
+    div1.attr({
+        pos:[100,100]
+    })
 
-    group.attr({
-        pos:[20,20]
+    const div1_s1 = new Sprite();
+    div1_s1.attr({
+        size:[100,100],
+        bgcolor:'orangered'    
+    }); 
+
+    const div1_s2 = new Sprite('images/01.png');
+    div1_s2.attr({
+        size: [376/2 , 339/2]
     });
 
+    div1.append(div1_s1, div1_s2);
 
-    const text = new Label('设置元素的滤镜设置元素的滤镜，支持滤镜，具体使用方式详见Demo设置元素的滤镜设置元素的滤镜，支持滤镜，具体使用方式详见Demo');
-    text.attr({
-        pos:[0,0],
-        font: 'bold 12px Arial',
-        size:[100],
-        lineBreak:'none',
-        fillColor: 'orangered',
-        lineHeight:'20px',
-        zIndex:1
-    });
+    scene.layer().append(div1);
 
-    const sprite = new Sprite();
-    sprite.attr({
-        pos:[0,0],
-        size:[50,50],
-        bgcolor:'#ddd',
-        zIndex:0
-    });
-
-    group.append(text, sprite);
-
-
-    scene.layer().append(group);
 });
