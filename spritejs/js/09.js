@@ -37,38 +37,32 @@ $(function(){
 
 
     // 手势判断
-    // var sy = 0;
-    // layer.on('touchstart',function(ev){
-    //     const { y } = ev;
-    //     sy = y;
-    // });
-    // var my = 0;
-    // layer.on('touchmove',function(ev){
-    //     const {y} = ev;
-    //     my = y;
+    var sy = 0;
+    layer.on('touchstart',function(ev){
+        const { y } = ev;
+        sy = y;
+    });
+    var my = 0;
+    layer.on('touchmove',function(ev){
+        const {y} = ev;
+        my = y;
 
-    //     console.log( Math.round(my) , Math.round(sy) );
+        console.log( Math.round(my) , Math.round(sy) );
 
-    //     if( my > sy ){
-    //         console.log('down');
-    //         div1Rotate+=10;
-    //     }else{
-    //         console.log('up');
-    //         div1Rotate-=10;
-    //     }
+        if( my > sy ){
+            console.log('down');
+            div1Rotate+=10;
+        }else{
+            console.log('up');
+            div1Rotate-=10;
+        }
 
-    //     // 改变旋转方向
-    //     div1.attr({
-    //         anchor: [0.5, 0.5],
-    //         rotate: div1Rotate,
-    //         pos:[ 750/2 , 400 ]
-    //     });
-    // });
-
-    var hammertime = new Hammer($('#container canvas')[0]);
-    hammertime.on('tapleft tapright tapup tapdown', function(ev) {
-        const { additionalEvent } = ev;
-        console.log( additionalEvent );
+        // 改变旋转方向
+        div1.attr({
+            anchor: [0.5, 0.5],
+            rotate: div1Rotate,
+            pos:[ 750/2 , 400 ]
+        });
     });
 
 
