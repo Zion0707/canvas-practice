@@ -12,6 +12,7 @@ $(function(){
         return Math.floor(Math.random() * c + n);
     }
 
+    
     // 创建下落物体
     var createBall = function(){
         var ball = new Sprite('../images/11.png');
@@ -29,7 +30,9 @@ $(function(){
         ],{
             duration: rd(5000,10000),
             iterations: 1,
-        });
+        });        
+
+        return ball;
     }
 
     //定时下落
@@ -53,6 +56,12 @@ $(function(){
         people.attr({
             pos:[x-100, 1000]
         });
+    });
+
+    layer.on('update', (evt) => {
+
+
+        
     });
 
 
