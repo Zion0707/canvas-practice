@@ -14,8 +14,9 @@ $(function(){
 
     //总的配置信息
     const CONFIG = {
-        ballCount: 10, //坠落球体总数
+        ballCount: 100, //坠落球体总数
         countDown: 10, //倒计时
+        downSpeed:0.5, //1表示1秒
     };    
 
     //文本信息
@@ -35,7 +36,7 @@ $(function(){
         font:'26px Arial',  
         fillColor:'#999',
     });
-    var word3 = new Label(`倒计时: ${CONFIG.countDown} 秒`);
+    var word3 = new Label(`球体结束倒计时: ${CONFIG.countDown} 秒`);
     word3.attr({
         pos:[0,60],
         font:'26px Arial',  
@@ -68,25 +69,27 @@ $(function(){
 
     //下落数
     var downNum=0;
-    var timer = setInterval(()=>{
-        //全部跑完就停止
-        if( downNum > blocks.length -1 ){
-            clearInterval(timer);
-        }else{
-            CONFIG.countDown--;
-            word3.text = `倒计时: ${CONFIG.countDown} 秒`;
-            //下落动画
-            blocks[downNum].animate([
-                { y: -100 },
-                { y: 2668 },
-            ],{
-                duration: rd(5000,10000),
-                iterations: 1,
-            });
-            
-            downNum++;            
-            word2.text = `坠落的球体数量: ${downNum} 个`;
+    var timer1 = setInterval(()=>{
+        //下落动画
+        blocks[downNum].animate([
+            { y: -100 },
+            { y: 2668 },
+        ],{
+            duration: rd(2000,10000),
+            iterations: 1,
+        });
+        
+        downNum++;            
+        word2.text = `坠落的球体数量: ${downNum} 个`;
+    },CONFIG.downSpeed * 1000);
+
+    var timer2 = setInterval(()=>{
+        CONFIG.countDown--;
+        if( CONFIG.countDown <= 0 ){
+            clearInterval(timer1);
+            clearInterval(timer2);
         }
+        word3.text = `球体结束倒计时: ${CONFIG.countDown} 秒`;
     },1000);
 
 
