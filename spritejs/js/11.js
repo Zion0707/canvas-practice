@@ -58,10 +58,8 @@ $(function(){
         });
     });
 
-    layer.on('update', (evt) => {
-
-
-        
+    layer.on('update',function(evt){
+        // console.log(evt);
     });
 
 
