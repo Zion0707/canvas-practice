@@ -10,8 +10,8 @@ $(function(){
     const div1 = new Group();
     const div1_c1 = new Sprite();
     div1_c1.attr({
+        pos:[0,0],
         size:[100,100],
-        pos:[100,100],
         bgcolor:'#f00'
     });
 
@@ -24,5 +24,16 @@ $(function(){
 
     div1.append(div1_c1, div1_c2);
     layer.append(div1);
+
+    layer.on('touchmove',function(evt){
+        
+        var x = Math.round(evt.x) - 50;
+        var y = Math.round(evt.y) - 50;
+        div1_c1.attr({
+            pos:[x,y],
+            size:[100,100],
+            bgcolor:'#f00'
+        });
+    });
 
 });
