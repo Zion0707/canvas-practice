@@ -37,6 +37,23 @@ $(function(){
         createBall();
     },1000);
 
+    //创建人物
+    var people = new Sprite();
+    people.attr({
+        size:[200,100],
+        pos:[(750-200)/2, 1000],
+        bgcolor:'#ff5722'
+    });
+    layer.append(people);
+
+
+    layer.on('touchmove',function(evt){
+        var x = Math.round(evt.x);
+        var y = Math.round(evt.y);
+        people.attr({
+            pos:[x-100, 1000]
+        });
+    });
 
 
 

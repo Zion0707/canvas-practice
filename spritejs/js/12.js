@@ -14,19 +14,4 @@ $(function(){
     });
     layer.append(sprite);    
 
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
-
 });
