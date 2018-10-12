@@ -15,6 +15,7 @@ $(function(){
     //总的配置信息
     const CONFIG = {
         ballCount: 10, //坠落球体总数
+        countDown: 10, //倒计时
     };    
 
     //文本信息
@@ -22,19 +23,25 @@ $(function(){
     wordGroup.attr({
         pos:[20,20]
     });
-    var word1 = new Label('接到的球体数量: 0个');
+    var word1 = new Label('接到的球体数量: 0 个');
     word1.attr({
         pos:[0, 0],
         font:'26px Arial',
         fillColor:'#999',
     });
-    var word2 = new Label('坠落的球体数量: 0个');
+    var word2 = new Label('坠落的球体数量: 0 个');
     word2.attr({
         pos:[0,30],
         font:'26px Arial',  
         fillColor:'#999',
-    })
-    wordGroup.append(word1, word2);
+    });
+    var word3 = new Label(`倒计时: ${CONFIG.countDown} 秒`);
+    word3.attr({
+        pos:[0,60],
+        font:'26px Arial',  
+        fillColor:'#999',
+    });
+    wordGroup.append(word1, word2, word3);
     layer.append(wordGroup);
 
     //创建新的球体
@@ -62,11 +69,12 @@ $(function(){
     //下落数
     var downNum=0;
     var timer = setInterval(()=>{
-    
         //全部跑完就停止
         if( downNum > blocks.length -1 ){
             clearInterval(timer);
         }else{
+            CONFIG.countDown--;
+            word3.text = `倒计时: ${CONFIG.countDown} 秒`;
             //下落动画
             blocks[downNum].animate([
                 { y: -100 },
@@ -77,7 +85,7 @@ $(function(){
             });
             
             downNum++;            
-            word2.text = `坠落的球体数量: ${downNum}个`;
+            word2.text = `坠落的球体数量: ${downNum} 个`;
         }
     },1000);
 
@@ -108,9 +116,10 @@ $(function(){
     var resNum=0;
     layer.on('update',function(evt){
         blocks.forEach((ball) => {
+            //判断是否碰撞了，碰撞了则执行相关操作
             if( peopel.OBBCollision(ball) ){
                 resNum+=1;
-                word1.text = `接到的球体数量: ${resNum}个`;                
+                word1.text = `接到的球体数量: ${resNum} 个`;                
                 ball.attr({
                     bgcolor:'#555'
                 });
