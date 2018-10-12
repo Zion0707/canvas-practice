@@ -69,20 +69,25 @@ $(function(){
 
     //下落数
     var downNum=0;
+    //准备下落
     var timer1 = setInterval(()=>{
-        //下落动画
-        blocks[downNum].animate([
-            { y: -100 },
-            { y: 2668 },
-        ],{
-            duration: rd(2000,10000),
-            iterations: 1,
-        });
-        
-        downNum++;            
-        word2.text = `坠落的球体数量: ${downNum} 个`;
+        try{
+            //下落动画
+            blocks[downNum].animate([
+                { y: -100 },
+                { y: 2668 },
+            ],{
+                duration: rd(2000,10000),
+                iterations: 1,
+            });
+            downNum++;            
+            word2.text = `坠落的球体数量: ${downNum} 个`;
+        }catch(err){
+            
+        }
     },CONFIG.downSpeed * 1000);
 
+    //倒计时
     var timer2 = setInterval(()=>{
         CONFIG.countDown--;
         if( CONFIG.countDown <= 0 ){
