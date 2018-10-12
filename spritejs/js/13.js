@@ -98,12 +98,14 @@ $(function(){
     },1000);
 
 
+    //接收物体y轴计算
+    var peopelY = $(window).height() * 2;
     //建立接球物体
     var peopel = new Sprite();
     peopel.attr({
         name:'peopel',
         size:[200,100],
-        pos:[(750-200)/2,1000],
+        pos:[(750-200)/2, peopelY],
         bgcolor:'orangered'
     });
     layer.append(peopel);
@@ -116,7 +118,7 @@ $(function(){
         var x = Math.round( evt.x );
         var y = Math.round( evt.y );
         peopel.attr({
-            pos:[x-100,1000]
+            pos:[x-100,peopelY]
         });
     });
 
